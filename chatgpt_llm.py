@@ -39,7 +39,7 @@ class ChatGPT(LLM):
             frequency_penalty=0.0,
             presence_penalty=0.0,
             stop=["\"\"\""]
-        ).choices[0].message.content
+        ).choices[0].text
 
         history += [[prompt, response]]
         yield response, history
