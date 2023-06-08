@@ -9,7 +9,7 @@ import openai
 
 
 class ChatGPT(LLM):
-    max_token: int = 4000
+    max_token: int = 2000
     temperature: float = 0.01
     top_p = 0.9
     # history = []
