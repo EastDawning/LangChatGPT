@@ -20,7 +20,6 @@ class ChatGPT(LLM):
     def __init__(self,api_key):
         super().__init__()
         openai.api_key = api_key
-        self.chatgpt=openai
 
     @property
     def _llm_type(self) -> str:
@@ -30,7 +29,7 @@ class ChatGPT(LLM):
               prompt: str,
               history: List[List[str]] = [],
               streaming: bool = STREAMING):  # -> Tuple[str, List[List[str]]]:
-        response=self.chatgpt.Completion.create(
+        response=openai.Completion.create(
             model="text-davinci-003",
             prompt=prompt,
             temperature=0,
