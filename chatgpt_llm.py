@@ -17,9 +17,9 @@ class ChatGPT(LLM):
     model: object = None
     history_len: int = 10
 
-    def __init__(self):
+    def __init__(self,api_key):
         super().__init__()
-        openai.api_key = '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'
+        openai.api_key = api_key
         self.chatgpt=openai
 
     @property
