@@ -59,7 +59,7 @@ class ChatGPT(LLM):
                    use_lora=False,
                    device_map: Optional[Dict[str, int]] = None,
                    **kwargs):
-        print("openai 模型加载成功!")
+        print("openai 模型加载成功")
 
 
 if __name__ == "__main__":
