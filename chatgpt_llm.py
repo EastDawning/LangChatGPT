@@ -17,7 +17,7 @@ class ChatGPT(LLM):
     model: object = None
     history_len: int = 10
 
-    def __init__(self,api_key):
+    def __init__(self, api_key):
         super().__init__()
         openai.api_key = api_key
 
@@ -29,23 +29,25 @@ class ChatGPT(LLM):
               prompt: str,
               history: List[List[str]] = [],
               streaming: bool = STREAMING):  # -> Tuple[str, List[List[str]]]:
-        response=openai.Completion.create(
-            model="text-davinci-003",
-            prompt=prompt,
-            temperature=0,
-            max_tokens=MAX_TOKEN,
-            top_p=1.0,
-            frequency_penalty=0.0,
-            presence_penalty=0.0,
-            stop=["\"\"\""]
-        ).choices[0].text
+        # response=openai.Completion.create(
+        #     model="text-davinci-003",
+        #     prompt=prompt,
+        #     temperature=0,
+        #     max_tokens=MAX_TOKEN,
+        #     top_p=1.0,
+        #     frequency_penalty=0.0,
+        #     presence_penalty=0.0,
+        #     stop=["\"\"\""]
+        # ).choices[0].text
 
+        response = openai.ChatCompletion.create(model="gpt-3.5-turbo",
+                                                temperature=0,
+                                                messages=[{"role": "user", "content": prompt}]).choices[0].message.content
         history += [[prompt, response]]
         yield response, history
 
-
     def load_model(self,
-                   model_name_or_path: str =None,
+                   model_name_or_path: str = None,
                    llm_device=LLM_DEVICE,
                    use_ptuning_v2=False,
                    use_lora=False,
