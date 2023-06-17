@@ -49,7 +49,8 @@ class ChatGPT(LLM):
                    use_lora=False,
                    device_map: Optional[Dict[str, int]] = None,
                    **kwargs):
-        print("openai 模型加载成功.")
+        raise NameError
+        print("openai 模型加载失败.")
 
 
 if __name__ == "__main__":
